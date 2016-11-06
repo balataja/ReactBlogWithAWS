@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogEntryShort from './BlogEntryShort.js';
 
-export default class manageBlogList extends React.Component{
+export default class ManageBlogList extends React.Component{
     constructor() {
         super();
         this.state = {
