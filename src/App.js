@@ -11,7 +11,6 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <Link to="/Home">Home</Link>
 
         {this.props.children}
       </div>
