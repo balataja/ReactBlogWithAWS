@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import BlogEntryForm from './BlogEntryForm';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as blogActions from '../../actions/blog-actions';
 
 class ManageBlogEntryPage extends React.Component {
     constructor() {
         super();
+
+        this.setBlogEntryState = this.setBlogEntryState.bind(this);
+        this.saveBlogEntry = this.saveBlogEntry.bind(this);
 
         this.state = {
             blogEntry: {title: "", body: "", tags: [] }
@@ -20,6 +26,7 @@ class ManageBlogEntryPage extends React.Component {
     saveBlogEntry(e) {
         e.preventDefault();
         //call api
+        this.props.actions.addBlog(this.state);
     }
 
     render() {
@@ -35,4 +42,20 @@ class ManageBlogEntryPage extends React.Component {
     }
 }
 
-export default ManageBlogEntryPage;
+function mapStateToProps(state, props) {
+    return {
+        blog: state.blog
+    }
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(blogActions, dispatch)
+    }
+}
+
+ManageBlogEntryPage.PropTypes = {
+    blog: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageBlogEntryPage);
