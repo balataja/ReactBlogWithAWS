@@ -10,19 +10,19 @@ class BlogEntryForm extends React.Component {
                     name="title"
                     label="Title"
                     value={this.props.title}
-                    onChange={this.props.blogEntry.onChange} />
+                    onChange={this.props.onChange} />
 
                 <Input
                     name="body"
                     label="Body"
                     value={this.props.body}
-                    onChange={this.props.blogEntry.onChange} />
+                    onChange={this.props.onChange} />
 
                 <Input
                     name="tags"
                     label="tags"
                     value={this.props.tags}
-                    onChange={this.props.blogEntry.onChange} />
+                    onChange={this.props.onChange} />
 
                 <input 
                     type="submit" 

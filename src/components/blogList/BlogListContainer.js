@@ -10,7 +10,7 @@ class BlogListContainer extends React.Component{
         super(props);
 
         this.state = {
-            blogs: []
+            blog: []
         }
     }
 
@@ -21,7 +21,7 @@ class BlogListContainer extends React.Component{
                 <Grid>
                     <Row>
                         <Col md={8}>
-                            <BlogEntryList blogs={this.state.blogs} />
+                            <BlogEntryList blog={this.props.blog} />
                         </Col>
                         <Col md={4}>
                             Sidebar Content Here!
@@ -35,12 +35,12 @@ class BlogListContainer extends React.Component{
 }
 
 BlogListContainer.PropTypes = {
-    blogs: PropTypes.array.isRequired
+    blog: PropTypes.array.isRequired
 }
 
 function mapStateToProps(state, props) {
     return {
-        blogs: state.blogs
+        blog: state.blog
     }
 }
 function mapDispatchToProps(dispatch) {

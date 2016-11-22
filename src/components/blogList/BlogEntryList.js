@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import BlogEntryShort from './BlogEntryShort';
 
-const BlogEntryList = ({blogs}) => {
+const BlogEntryList = ({blog}) => {
     return (
         <div>
-            {blogs.map((blog) => {
+            {blog.map((blog) => {
                 return <BlogEntryShort key={blog.title} title={blog.title} tags={blog.tags} body={blog.body} />
             })}
         </div>
@@ -12,7 +12,7 @@ const BlogEntryList = ({blogs}) => {
 }
 
 BlogEntryList.propTypes = {
-    blogs: PropTypes.array.isRequired
+    blog: PropTypes.array.isRequired
 }
 
 export default BlogEntryList;

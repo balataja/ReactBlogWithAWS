@@ -3,6 +3,7 @@ import BlogEntryForm from './BlogEntryForm';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as blogActions from '../../actions/blog-actions';
+import {browserHistory} from 'react-router';
 
 class ManageBlogEntryPage extends React.Component {
     constructor() {
@@ -12,7 +13,7 @@ class ManageBlogEntryPage extends React.Component {
         this.saveBlogEntry = this.saveBlogEntry.bind(this);
 
         this.state = {
-            blogEntry: {title: "", body: "", tags: [] }
+            blogEntry: []
         }
     }
 
@@ -26,7 +27,8 @@ class ManageBlogEntryPage extends React.Component {
     saveBlogEntry(e) {
         e.preventDefault();
         //call api
-        this.props.actions.addBlog(this.state);
+        this.props.actions.addBlog(this.state.blogEntry);
+        browserHistory.push('/blog');
     }
 
     render() {
