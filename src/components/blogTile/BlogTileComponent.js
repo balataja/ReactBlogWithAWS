@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 
-export default class BlogEntryShort extends React.Component {
+export default class BlogTileComponent extends React.Component {
     render() {
         return (
             <div>

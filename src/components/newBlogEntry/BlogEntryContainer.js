@@ -28,13 +28,12 @@ class ManageBlogEntryPage extends React.Component {
         e.preventDefault();
         //call api
         this.props.actions.addBlog(this.state.blogEntry);
-        browserHistory.push('/blog');
+        browserHistory.push('/Home');
     }
 
     render() {
         return (
             <div>
-                <span>ManageBlogEntryPage!</span>
                 <BlogEntryForm 
                     blogEntry={this.state.blogEntry} 
                     onChange={this.setBlogEntryState}

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import BlogEntryList from './BlogEntryList.js';
+import BlogEntryList from './BlogListComponent.js';
 import { PageHeader, Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,7 +13,7 @@ class BlogListContainer extends React.Component{
             blog: []
         }
     }
-
+//To Do: move out text and page layout to a component
     render() {
         return (
             <div>
