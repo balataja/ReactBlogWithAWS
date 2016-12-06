@@ -1,6 +1,7 @@
 import * as types from './action-types';
 import AWS from 'aws-sdk'
 import Promise from 'bluebird'
+import {GetDate} from '../common/functions'
 
 AWS.config.update({
     region: "us-east-1",
@@ -24,7 +25,7 @@ var AwsApi = {
         var params = {
             TableName: "Blogs",
                 Item: {
-                    "postedDate":  new Date(),
+                    "postedDate": GetDate(),
                     "title": blog.title,
                     "info": { 
                             tags: blog.tags
@@ -39,6 +40,30 @@ var AwsApi = {
                 console.log(JSON.stringify(data, null, 2));
         });
 
+    },
+
+    getBlogs: function () {
+        var params = {
+            TableName : "Blogs",
+            KeyConditionExpression: "#dt = :date",
+            ExpressionAttributeNames:{
+                "#dt": "postedDate"
+            },
+            ExpressionAttributeValues: {
+                ":date":"12/06/2016"
+            }
+        };
+
+        docClient.query(params, function(err, data) {
+            if (err) {
+                console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+            } else {
+                console.log("Query succeeded.");
+                data.Items.forEach(function(item) {
+                    console.log(" -", item.title + ": " + item.postedDate);
+                });
+            }
+        });
     }
 }
 
