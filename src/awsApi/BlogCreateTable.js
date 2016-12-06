@@ -10,13 +10,13 @@ AWS.config.update({
 var dynamodb = new AWS.DynamoDB();
 
 var params = {
-    TableName : "Movies",
+    TableName : "Blogs",
     KeySchema: [       
-        { AttributeName: "year", KeyType: "HASH"},  //Partition key
+        { AttributeName: "postedDate", KeyType: "HASH"},  //Partition key
         { AttributeName: "title", KeyType: "RANGE" }  //Sort key
     ],
     AttributeDefinitions: [       
-        { AttributeName: "year", AttributeType: "N" },
+        { AttributeName: "postedDate", AttributeType: "S" },
         { AttributeName: "title", AttributeType: "S" }
     ],
     ProvisionedThroughput: {       
