@@ -9,20 +9,11 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient()
 
-var table = "Movies";
-
-var year = 2005;
-var title = "Inglorious Bastards";
-
 var params = {
-    TableName: table,
-    Key:{
-        "year": year,
-        "title": title
-    }
+    TableName: "Blogs"
 };
 
-docClient.get(params, function(err, data) {
+docClient.scan(params, function(err, data) {
     if (err) {
         console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
     } else {

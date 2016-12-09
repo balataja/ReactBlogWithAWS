@@ -9,15 +9,31 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
+var GetDate = function() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+
+    today = mm+'/'+dd+'/'+yyyy;
+    return today;
+}
+
 var params = {
-    TableName: "Movies",
+    TableName: "Blogs",
         Item: {
-            "year":  2005,
-            "title": "Inglorious Bastards",
+            "title": "Blog Title",
+            "postedDate": GetDate(),
             "info": { 
-                    plot: "Everything happens all at once.",
-                    rating: 5.5,
-                    actors: ["Larry", "Moe", "Curly"]
+                    tags: "Coding"
             } 
         }
 };
@@ -26,5 +42,10 @@ docClient.put(params, function(err, data) {
     if (err)
         console.log(JSON.stringify(err, null, 2));
     else
+    {
         console.log(JSON.stringify(data, null, 2));
+        data.Items.forEach(function(blog) {
+            
+        })
+    }
 });

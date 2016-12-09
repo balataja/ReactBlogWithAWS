@@ -13,58 +13,66 @@ AWS.config.update({
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 export const addBlog = (blog) => {
-    AwsApi.addBlog(blog)
+    addBlogToDb(blog)
     return {
         type: types.ADD_BLOG,
         blog
     }
 }
 
-var AwsApi = {
-    addBlog: function (blog) {
-        var params = {
-            TableName: "Blogs",
-                Item: {
-                    "postedDate": GetDate(),
-                    "title": blog.title,
-                    "info": { 
-                            tags: blog.tags
-                    } 
-                }
-        };
-
-        docClient.put(params, function(err, data) {
-            if (err)
-                console.log(JSON.stringify(err, null, 2));
-            else
-                console.log(JSON.stringify(data, null, 2));
-        });
-
-    },
-
-    getBlogs: function () {
-        var params = {
-            TableName : "Blogs",
-            KeyConditionExpression: "#dt = :date",
-            ExpressionAttributeNames:{
-                "#dt": "postedDate"
-            },
-            ExpressionAttributeValues: {
-                ":date":"12/06/2016"
-            }
-        };
-
-        docClient.query(params, function(err, data) {
-            if (err) {
-                console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-            } else {
-                console.log("Query succeeded.");
-                data.Items.forEach(function(item) {
-                    console.log(" -", item.title + ": " + item.postedDate);
-                });
-            }
-        });
+export const receiveBlogs = (blog) => {
+    return {
+        type: types.RECEIVE_BLOG,
+        blog
     }
 }
 
-export default AwsApi
+export const getBlogs = () => dispatch => {
+    return getBlogsFromDb(function(err, data) {
+        if (err) {
+            console.log("Unable to scan DB for blogs:", JSON.stringify(err, null, 2))
+        }
+        else {
+            dispatch(receiveBlogs(data.Items))
+        }
+    })
+}
+
+const addBlogToDb = (blog) => {
+    var params = {
+        TableName: "Blogs",
+            Item: {
+                "postedDate": GetDate(),
+                "title": blog.title,
+                "info": { 
+                        tags: blog.tags
+                } 
+            }
+    };
+
+    docClient.put(params, function(err, data) {
+        if (err)
+            console.log(JSON.stringify(err, null, 2));
+        else
+            console.log(JSON.stringify(data, null, 2));
+    });
+
+}
+
+const getBlogsFromDb = (callback) => {
+    var params = {
+        TableName : "Blogs",
+    };
+
+    docClient.scan(params, function(err, data) {
+        if (err) {
+            console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+        } else {
+            console.log("Scan succeeded.");
+            data.Items.forEach(function(item) {
+                console.log(" -", item.title + ": " + item.postedDate);
+            });
+        }
+        callback(err, data)
+    });
+}

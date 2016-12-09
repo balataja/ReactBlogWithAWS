@@ -9,6 +9,9 @@ export default class BlogTileComponent extends React.Component {
                     <h2>{this.props.title}</h2>
                 </Row>
                 <Row>
+                    {this.props.postedDate}
+                </Row>
+                <Row>
                     Tags: {this.props.tags}
                 </Row>
                 <Row >

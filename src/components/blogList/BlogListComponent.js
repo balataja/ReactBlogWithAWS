@@ -4,8 +4,8 @@ import BlogTileContainer from '../blogTile/BlogTileContainer';
 const BlogListComponent = ({blog}) => {
     return (
         <div>
-            {blog.map((blog) => {
-                return <BlogTileContainer blog={blog} />
+            {blog.map(function(b) {
+                return <BlogTileContainer key={b.title} blog={b} />
             })}
         </div>
     )

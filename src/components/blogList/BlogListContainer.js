@@ -13,6 +13,11 @@ class BlogListContainer extends React.Component{
             blog: []
         }
     }
+
+    componentDidMount() {
+        this.props.actions.getBlogs()
+    }
+
 //To Do: move out text and page layout to a component
     render() {
         return (
