@@ -20,7 +20,7 @@ class BlogEntryForm extends React.Component {
 
                 <Input
                     name="tags"
-                    label="tags"
+                    label="Tags"
                     value={this.props.tags}
                     onChange={this.props.onChange} />
 

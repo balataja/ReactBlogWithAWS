@@ -17,7 +17,7 @@ class BlogTileContainer extends React.Component{
             <BlogTileComponent 
                 key={this.props.blog.title} 
                 title={this.props.blog.title} 
-                tags={this.props.blog.info.tags} 
+                tags={this.props.blog.info.tags}
                 body={this.props.blog.body} 
                 postedDate={this.props.blog.postedDate}
                 onTileClick={this.onTileClick} />

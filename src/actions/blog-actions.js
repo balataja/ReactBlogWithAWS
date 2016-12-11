@@ -1,6 +1,5 @@
 import * as types from './action-types';
 import AWS from 'aws-sdk'
-import Promise from 'bluebird'
 import {GetDate} from '../common/functions'
 
 AWS.config.update({
