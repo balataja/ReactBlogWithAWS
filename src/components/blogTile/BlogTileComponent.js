@@ -4,12 +4,12 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 export default class BlogTileComponent extends React.Component {
     render() {
         return (
-            <div>
+            <div >
                 <Row>
                     <h2>{this.props.title}</h2>
                 </Row>
                 <Row>
-                    {this.props.postedDate}
+                    Posted: {this.props.postedDate}
                 </Row>
                 <Row>
                     Tags: {this.props.tags}

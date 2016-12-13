@@ -3,3 +3,21 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.grid__row {
+  display: flex;
+}
+.grid__main {
+  flex: 1;
+  padding: 5rem;
+}
+.grid__sidebar {
+  flex: 0 0 24rem;
+  padding: 12px;
+  background-color: #28aadc;
+}
+
+.grid__column {
+  display: flex;
+  align-items: center;
+}

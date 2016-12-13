@@ -44,7 +44,8 @@ const addBlogToDb = (blog) => {
                 "postedDate": GetDate(),
                 "title": blog.title,
                 "info": { 
-                        tags: blog.tags
+                        tags: blog.tags,
+                        body: blog.body
                 } 
             }
     };

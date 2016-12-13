@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import BlogEntryList from './BlogListComponent.js';
-import { PageHeader, Grid, Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as blogActions from '../../actions/blog-actions';
@@ -18,23 +17,9 @@ class BlogListContainer extends React.Component{
         this.props.actions.getBlogs()
     }
 
-//To Do: move out text and page layout to a component
     render() {
         return (
-            <div>
-                <PageHeader>James M. Balata</PageHeader>
-                <Grid>
-                    <Row>
-                        <Col md={8}>
-                            <BlogEntryList blog={this.props.blog} />
-                        </Col>
-                        <Col md={4}>
-                            Sidebar Content Here!
-                            To be refactored to it's own component, and moved to a higher level container
-                        </Col>
-                    </Row>
-                </Grid>
-            </div>
+            <BlogEntryList blog={this.props.blog} />
         )
     }
 }
