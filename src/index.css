@@ -6,6 +6,7 @@ body {
 
 .grid__wrapper {
   display: flex;
+  flex-direction: column;
 }
 .grid__main {
   flex: 1;
@@ -13,9 +14,17 @@ body {
   align-items: center;
 }
 .grid__sidebar {
-  flex: 0 0 24rem;
+  flex: 0 0 16rem;
   padding: 12px;
   background-color: #28aadc;
+}
+@media all and (min-width: 768px) {
+  .grid__wrapper {
+    flex-direction: row;
+  }
+  .grid__sidebar {
+    flex: 0 0 24rem;
+  }
 }
 
 .blogtile__wrapper {

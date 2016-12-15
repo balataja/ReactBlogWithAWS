@@ -1,5 +1,6 @@
 import React from 'react';
 import BlogTileComponent from './BlogTileComponent';
+import { PageHeader } from 'react-bootstrap';
 
 class BlogTileContainer extends React.Component{
     constructor(props) {
@@ -14,13 +15,16 @@ class BlogTileContainer extends React.Component{
 
     render() {
         return (
-            <BlogTileComponent 
-                key={this.props.blog.title} 
-                title={this.props.blog.title} 
-                tags={this.props.blog.info.tags}
-                body={this.props.blog.info.body} 
-                postedDate={this.props.blog.postedDate}
-                onTileClick={this.onTileClick} />
+            <div>
+                <PageHeader>James M. Balata</PageHeader>
+                <BlogTileComponent 
+                    key={this.props.blog.title} 
+                    title={this.props.blog.title} 
+                    tags={this.props.blog.info.tags}
+                    body={this.props.blog.info.body} 
+                    postedDate={this.props.blog.postedDate}
+                    onTileClick={this.onTileClick} />
+            </div>
         )
     }
 }
