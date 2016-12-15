@@ -4,7 +4,7 @@ import { Grid, Row, Col, Button } from 'react-bootstrap';
 export default class BlogTileComponent extends React.Component {
     render() {
         return (
-            <div >
+            <div className="blogtile" >
                 <Row>
                     <h2>{this.props.title}</h2>
                 </Row>

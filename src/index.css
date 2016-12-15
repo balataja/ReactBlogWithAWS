@@ -9,7 +9,7 @@ body {
 }
 .grid__main {
   flex: 1;
-  padding: 5rem;
+  padding: 2rem;
 }
 .grid__sidebar {
   flex: 0 0 24rem;
@@ -20,4 +20,12 @@ body {
 .grid__column {
   display: flex;
   align-items: center;
+}
+
+.blogtile {
+  display: block;
+  line-height: 1.6;
+  color: #444;
+  font-family: 'Lora', Georgia, serif;
+  padding: 1.25rem;
 }
