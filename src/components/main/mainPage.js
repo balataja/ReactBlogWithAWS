@@ -6,8 +6,8 @@ import { PageHeader } from 'react-bootstrap';
 class MainPage extends React.Component{
     render() {
         return (
-            <div >
-                <div className="grid__row" >
+            <div>
+                <div className="grid__wrapper" >
                     <div className="grid__main" >
                         <PageHeader>James M. Balata</PageHeader>
                         <BlogList />

@@ -4,12 +4,13 @@ body {
   font-family: sans-serif;
 }
 
-.grid__row {
+.grid__wrapper {
   display: flex;
 }
 .grid__main {
   flex: 1;
   padding: 2rem;
+  align-items: center;
 }
 .grid__sidebar {
   flex: 0 0 24rem;
@@ -17,15 +18,22 @@ body {
   background-color: #28aadc;
 }
 
-.grid__column {
+.blogtile__wrapper {
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
 }
-
 .blogtile {
-  display: block;
   line-height: 1.6;
   color: #444;
   font-family: 'Lora', Georgia, serif;
   padding: 1.25rem;
+  max-width: 40rem;
+  align-items: center;
+  max-width: 720px;
+}
+.blogtile__body {
+  text-align: left;
 }
