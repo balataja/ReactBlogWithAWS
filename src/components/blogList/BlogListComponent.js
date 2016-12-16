@@ -5,7 +5,7 @@ const BlogListComponent = ({blog}) => {
     return (
         <div>
             {blog.map(function(b) {
-                return <BlogTileContainer key={b.title} blog={b} />
+                return <BlogTileContainer key={b.postedDate} blog={b} />
             })}
         </div>
     )

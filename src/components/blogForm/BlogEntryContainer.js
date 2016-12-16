@@ -26,7 +26,6 @@ class ManageBlogEntryPage extends React.Component {
 
     saveBlogEntry(e) {
         e.preventDefault();
-        //call api
         this.props.actions.addBlog(this.state.blogEntry);
         browserHistory.push('/Home');
     }

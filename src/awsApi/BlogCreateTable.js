@@ -13,11 +13,11 @@ var params = {
     TableName : "Blogs",
     KeySchema: [       
         { AttributeName: "postedDate", KeyType: "HASH"},  //Partition key
-        { AttributeName: "title", KeyType: "RANGE" }  //Sort key
+        { AttributeName: "titleId", KeyType: "RANGE" }  //Sort key
     ],
     AttributeDefinitions: [       
         { AttributeName: "postedDate", AttributeType: "S" },
-        { AttributeName: "title", AttributeType: "S" }
+        { AttributeName: "titleId", AttributeType: "S" }
     ],
     ProvisionedThroughput: {       
         ReadCapacityUnits: 10, 

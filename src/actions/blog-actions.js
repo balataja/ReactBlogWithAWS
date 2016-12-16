@@ -42,10 +42,11 @@ const addBlogToDb = (blog) => {
         TableName: "Blogs",
             Item: {
                 "postedDate": GetDate(),
-                "title": blog.title,
+                "titleId": blog.title.replace(/\s/g, ''),
                 "info": { 
                         tags: blog.tags,
-                        body: blog.body
+                        body: blog.body,
+                        title: blog.title
                 } 
             }
     };
@@ -70,7 +71,7 @@ const getBlogsFromDb = (callback) => {
         } else {
             console.log("Scan succeeded.");
             data.Items.forEach(function(item) {
-                console.log(" -", item.title + ": " + item.postedDate);
+                console.log(" -", item.titleId + ": " + item.postedDate);
             });
         }
         callback(err, data)

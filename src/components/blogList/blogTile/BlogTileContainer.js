@@ -10,15 +10,15 @@ class BlogTileContainer extends React.Component{
     }
 
     onTileClick() {
-        browserHistory.push('/Blog/' + this.props.blog.title.replace(/\s/g, ''));
+        browserHistory.push('/Blog/' + this.props.blog.titleId);
     }
 
     render() {
         return (
             <div>
                 <BlogTileComponent 
-                    key={this.props.blog.title} 
-                    title={this.props.blog.title} 
+                    key={this.props.blog.titleId}
+                    title={this.props.blog.info.title}
                     tags={this.props.blog.info.tags}
                     body={this.props.blog.info.body} 
                     postedDate={this.props.blog.postedDate}
