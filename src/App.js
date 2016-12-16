@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Link} from 'react-router';
 import SideBar from './components/sideBar/SideBarContainer'
+import { PageHeader } from 'react-bootstrap';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
                 <SideBar />
             </div>
             <div className="grid__main" >
+                <PageHeader>James M. Balata</PageHeader>
                 {this.props.children}
             </div>
         </div>

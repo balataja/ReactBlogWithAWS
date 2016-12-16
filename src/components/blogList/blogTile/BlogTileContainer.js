@@ -1,6 +1,6 @@
 import React from 'react';
 import BlogTileComponent from './BlogTileComponent';
-import { PageHeader } from 'react-bootstrap';
+import {browserHistory} from 'react-router';
 
 class BlogTileContainer extends React.Component{
     constructor(props) {
@@ -10,13 +10,12 @@ class BlogTileContainer extends React.Component{
     }
 
     onTileClick() {
-        //flip tile for details or open new screen for details
+        browserHistory.push('/Blog/' + this.props.blog.title.replace(/\s/g, ''));
     }
 
     render() {
         return (
             <div>
-                <PageHeader>James M. Balata</PageHeader>
                 <BlogTileComponent 
                     key={this.props.blog.title} 
                     title={this.props.blog.title} 

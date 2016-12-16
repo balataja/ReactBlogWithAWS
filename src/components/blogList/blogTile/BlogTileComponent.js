@@ -7,7 +7,7 @@ export default class BlogTileComponent extends React.Component {
             <div className="blogtile__wrapper">
                 <div className="blogtile" >
                     <Row>
-                        <h2>{this.props.title}</h2>
+                        <h2 onClick={this.props.onTileClick} >{this.props.title}</h2>
                     </Row>
                     <Row>
                         Posted: {this.props.postedDate}
@@ -19,7 +19,7 @@ export default class BlogTileComponent extends React.Component {
                         {this.props.body}
                     </Row>
                     <Row>
-                        <Button bsStyle="primary">Continue Reading</Button>
+                        <Button onClick={this.props.onTileClick} bsStyle="primary">Continue Reading</Button>
                     </Row>
                 </div>
             </div>

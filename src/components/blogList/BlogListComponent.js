@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import BlogTileContainer from '../blogTile/BlogTileContainer';
+import BlogTileContainer from './blogTile/BlogTileContainer';
 
 const BlogListComponent = ({blog}) => {
     return (
