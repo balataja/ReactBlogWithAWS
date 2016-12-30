@@ -1,7 +1,6 @@
 import React from 'react'
 import BlogComponent from './BlogComponent'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 class BlogContainer extends React.Component {
     constructor(props) {
@@ -9,10 +8,11 @@ class BlogContainer extends React.Component {
 
         if (!this.props) {
             //get specific blog from db
+            
         } else {
             //get specific blog from redux store
             this.props.blog.forEach(function(element) {
-                if (element.titleId == this.props.params.id) {
+                if (element.titleId === this.props.params.id) {
                     this.state= {currentBlog: element}
                 }
             }, this);

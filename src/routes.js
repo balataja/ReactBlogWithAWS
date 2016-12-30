@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, browserHistory, IndexRedirect } from 'react-router'
+import { Route, IndexRedirect } from 'react-router'
 import App from './App'
 import Home from './components/main/mainPage'
 import NewEntry from './components/blogForm/BlogEntryContainer'

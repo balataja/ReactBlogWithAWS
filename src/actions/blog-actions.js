@@ -11,32 +11,6 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-export const addBlog = (blog) => {
-    addBlogToDb(blog)
-    return {
-        type: types.ADD_BLOG,
-        blog
-    }
-}
-
-export const receiveBlogs = (blog) => {
-    return {
-        type: types.RECEIVE_BLOG,
-        blog
-    }
-}
-
-export const getBlogs = () => dispatch => {
-    return getBlogsFromDb(function(err, data) {
-        if (err) {
-            console.log("Unable to scan DB for blogs:", JSON.stringify(err, null, 2))
-        }
-        else {
-            dispatch(receiveBlogs(data.Items))
-        }
-    })
-}
-
 const addBlogToDb = (blog) => {
     var params = {
         TableName: "Blogs",
@@ -57,6 +31,13 @@ const addBlogToDb = (blog) => {
         else
             console.log(JSON.stringify(data, null, 2));
     });
+}
+
+const getBlogFromDb = (callback) => {
+    var params = {
+        TableName : "Blogs",
+        KeyConditionExpression: ""
+    }
 
 }
 
@@ -76,4 +57,48 @@ const getBlogsFromDb = (callback) => {
         }
         callback(err, data)
     });
+}
+
+export const addBlog = (blog) => {
+    addBlogToDb(blog)
+    return {
+        type: types.ADD_BLOG,
+        blog
+    }
+}
+
+export const receiveBlog = (blog) => {
+    return {
+        type: types.GET_BLOG,
+        blog
+    }
+}
+
+export const receiveBlogs = (blog) => {
+    return {
+        type: types.RECEIVE_BLOG,
+        blog
+    }
+}
+
+export const getBlog = () => dispatch => {
+    return getBlogFromDb(function(err, data) {
+        if (err) {
+            console.log("Unable to query DB for blog:", JSON.stringify(err, null, 2))
+        }
+        else {
+            dispatch(receiveBlog(data.Items))
+        }
+    })
+}
+
+export const getBlogs = () => dispatch => {
+    return getBlogsFromDb(function(err, data) {
+        if (err) {
+            console.log("Unable to scan DB for blogs:", JSON.stringify(err, null, 2))
+        }
+        else {
+            dispatch(receiveBlogs(data.Items))
+        }
+    })
 }
