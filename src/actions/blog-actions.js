@@ -14,23 +14,19 @@ var docClient = new AWS.DynamoDB.DocumentClient();
 const addBlogToDb = (blog) => {
     var params = {
         TableName: "Blogs",
-            Item: {
-                "postedDate": GetDate(),
-                "titleId": blog.title.replace(/\s/g, ''),
-                "info": { 
-                        tags: blog.tags,
-                        body: blog.body,
-                        title: blog.title
-                } 
-            }
+            Item: blog
     };
 
     docClient.put(params, function(err, data) {
         if (err)
             console.log(JSON.stringify(err, null, 2));
         else
+        {
             console.log(JSON.stringify(data, null, 2));
+            //return params.Item;
+        }
     });
+    //return params.Item;
 }
 
 const getBlogFromDb = (callback) => {
@@ -60,10 +56,19 @@ const getBlogsFromDb = (callback) => {
 }
 
 export const addBlog = (blog) => {
-    addBlogToDb(blog)
+    var blogWithPostData = {
+        "postedDate": GetDate(),
+                "titleId": blog.title.replace(/\s/g, ''),
+                "info": { 
+                        tags: blog.tags,
+                        body: blog.body,
+                        title: blog.title
+                } 
+    };
+    addBlogToDb(blogWithPostData)
     return {
-        type: types.ADD_BLOG,
-        blog
+       type: types.ADD_BLOG,
+       blogWithPostData
     }
 }
 

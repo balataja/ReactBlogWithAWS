@@ -18,8 +18,15 @@ class BlogListContainer extends React.Component{
     }
 
     render() {
+        let blogEntryList = {};
+        if (this.props.blog)
+        {
+            blogEntryList = <BlogEntryList blog={this.props.blog} />
+        }
         return (
-            <BlogEntryList blog={this.props.blog} />
+            <div>
+                {blogEntryList}
+            </div>
         )
     }
 }
