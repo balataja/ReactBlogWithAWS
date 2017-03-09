@@ -26,8 +26,9 @@ class ManageBlogEntryPage extends React.Component {
 
     saveBlogEntry(e) {
         e.preventDefault();
-        this.props.actions.addBlog(this.state.blogEntry);
-        browserHistory.push('/Home');
+        // ToDo: field validation
+        this.props.actions.postBlog(this.state.blogEntry);
+        //browserHistory.push('/Home');
     }
 
     render() {

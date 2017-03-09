@@ -11,51 +11,51 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-const addBlogToDb = (blog) => {
-    var params = {
-        TableName: "Blogs",
-            Item: blog
-    };
+// ToDo: Decouple Database api from actions
 
-    docClient.put(params, function(err, data) {
-        if (err)
-            console.log(JSON.stringify(err, null, 2));
-        else
-        {
-            console.log(JSON.stringify(data, null, 2));
-            //return params.Item;
-        }
-    });
-    //return params.Item;
-}
-
-const getBlogFromDb = (callback) => {
-    var params = {
-        TableName : "Blogs",
-        KeyConditionExpression: ""
+export const requestBlogs = (blogs) => {
+    return {
+        type: types.REQUEST_BLOGS,
+        blogs
     }
-
 }
 
-const getBlogsFromDb = (callback) => {
-    var params = {
-        TableName : "Blogs",
-    };
+export const requestBlogsSuccess = (blogs) => {
+    return {
+        type: types.REQUEST_BLOGS_SUCCESS,
+        blogs
+    }
+}
 
-    docClient.scan(params, function(err, data) {
-        if (err) {
-            console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
-        } else {
-            console.log("Scan succeeded.");
-            data.Items.forEach(function(item) {
-                console.log(" -", item.titleId + ": " + item.postedDate);
-            });
-        }
-        callback(err, data)
-    });
+export const requestBlogsError = (err) => {
+    return {
+        type: types.REQUEST_BLOGS_ERROR,
+        err
+    }
 }
 
 export const addBlog = (blog) => {
+    return {
+       type: types.ADD_BLOG,
+       blog
+    }
+}
+
+export const addBlogSuccess = (blog) => {
+    return {
+        type: types.ADD_BLOG_SUCCESS,
+        blog
+    }
+}
+
+export const addBlogError = (err) => {
+    return {
+        type: types.ADD_BLOG_ERROR,
+        err
+    }
+}
+
+export const postBlog = (blog) => dispatch => {
     var blogWithPostData = {
         "postedDate": GetDate(),
                 "titleId": blog.title.replace(/\s/g, ''),
@@ -65,45 +65,44 @@ export const addBlog = (blog) => {
                         title: blog.title
                 } 
     };
-    addBlogToDb(blogWithPostData)
-    return {
-       type: types.ADD_BLOG,
-       blogWithPostData
-    }
-}
+    dispatch(addBlog(blogWithPostData))
+    
+    var params = {
+        TableName: "Blogs",
+            Item: blogWithPostData
+    };
 
-export const receiveBlog = (blog) => {
-    return {
-        type: types.GET_BLOG,
-        blog
-    }
-}
-
-export const receiveBlogs = (blog) => {
-    return {
-        type: types.RECEIVE_BLOG,
-        blog
-    }
-}
-
-export const getBlog = () => dispatch => {
-    return getBlogFromDb(function(err, data) {
-        if (err) {
-            console.log("Unable to query DB for blog:", JSON.stringify(err, null, 2))
+    docClient.put(params, function(err, data) {
+        if (err)
+        {
+            console.log(JSON.stringify(err, null, 2));
+            dispatch(addBlogError(err))
         }
-        else {
-            dispatch(receiveBlog(data.Items))
+        else
+        {
+            console.log(JSON.stringify(data, null, 2));
+            dispatch(addBlogSuccess(data))
         }
-    })
+    });   
 }
 
 export const getBlogs = () => dispatch => {
-    return getBlogsFromDb(function(err, data) {
+    dispatch(requestBlogs())
+
+    var params = {
+        TableName : "Blogs",
+    };
+
+    docClient.scan(params, function(err, data) {
         if (err) {
-            console.log("Unable to scan DB for blogs:", JSON.stringify(err, null, 2))
+            console.error("Unable to query. Error:", JSON.stringify(err, null, 2));
+            dispatch(requestBlogsError(err))
+        } else {
+            console.log("Scan succeeded.");
+            data.Items.forEach(function(item) {
+                console.log(" -", item.titleId + ": " + item.postedDate);
+            });
+            dispatch(requestBlogsSuccess(data.Items))
         }
-        else {
-            dispatch(receiveBlogs(data.Items))
-        }
-    })
+    });
 }

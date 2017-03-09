@@ -12,7 +12,7 @@ class App extends Component {
                 <SideBar />
             </div>
             <div className="grid__main" >
-                <PageHeader>James M. Balata</PageHeader>
+                <PageHeader></PageHeader>
                 {this.props.children}
             </div>
         </div>

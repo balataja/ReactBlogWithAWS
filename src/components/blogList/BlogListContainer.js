@@ -18,14 +18,16 @@ class BlogListContainer extends React.Component{
     }
 
     render() {
-        let blogEntryList = {};
-        if (this.props.blog)
-        {
-            blogEntryList = <BlogEntryList blog={this.props.blog} />
-        }
+        const { isFetching, hasPostedSuccessfully, items } = this.props.blog
+
         return (
             <div>
-                {blogEntryList}
+                {!isFetching && items.length > 0 &&
+                    <BlogEntryList blog={items} />
+                }
+                {isFetching &&
+                    <div>Loading..</div>
+                }
             </div>
         )
     }
