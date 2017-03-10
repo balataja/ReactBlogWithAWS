@@ -1,6 +1,7 @@
 import * as types from './action-types';
 import AWS from 'aws-sdk'
 import {GetDate} from '../common/functions'
+import {CreateNotification} from '../common/notifications'
 
 AWS.config.update({
     region: "us-east-1",
@@ -12,6 +13,7 @@ AWS.config.update({
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 // ToDo: Decouple Database api from actions
+// ToDo: input validation
 
 export const requestBlogs = (blogs) => {
     return {
@@ -77,11 +79,13 @@ export const postBlog = (blog) => dispatch => {
         {
             console.log(JSON.stringify(err, null, 2));
             dispatch(addBlogError(err))
+            CreateNotification('error')
         }
         else
         {
             console.log(JSON.stringify(data, null, 2));
             dispatch(addBlogSuccess(data))
+            CreateNotification('success')
         }
     });   
 }

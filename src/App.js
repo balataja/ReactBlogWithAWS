@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SideBar from './components/sideBar/SideBarContainer'
 import { PageHeader } from 'react-bootstrap';
+import { NotificationContainer } from 'react-notifications';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
                 {this.props.children}
             </div>
         </div>
+        <NotificationContainer />
       </div>
     );
   }
