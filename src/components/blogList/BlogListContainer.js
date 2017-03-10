@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as blogActions from '../../actions/blog-actions';
 
+// ToDo: reorganize Blog components files and folders to something a little more intuitive
+// ToDo: figure out a way to import modules/files relatively instead of hardcoded (aliases with webpack)
 class BlogListContainer extends React.Component{
     constructor(props) {
         super(props);

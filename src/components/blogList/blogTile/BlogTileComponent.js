@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Button } from 'react-bootstrap';
 
 export default class BlogTileComponent extends React.Component {
+    // ToDo: make this look good. Check out http://jamesknelson.com/ for inspiration
     render() {
         return (
             <div className="blogtile__wrapper">

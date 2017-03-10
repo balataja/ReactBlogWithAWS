@@ -13,7 +13,6 @@ AWS.config.update({
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 // ToDo: Decouple Database api from actions
-// ToDo: input validation
 
 export const requestBlogs = (blogs) => {
     return {
@@ -67,6 +66,7 @@ export const postBlog = (blog) => dispatch => {
                         title: blog.title
                 } 
     };
+
     dispatch(addBlog(blogWithPostData))
     
     var params = {
@@ -87,7 +87,7 @@ export const postBlog = (blog) => dispatch => {
             dispatch(addBlogSuccess(data))
             CreateNotification('success')
         }
-    });   
+    });
 }
 
 export const getBlogs = () => dispatch => {

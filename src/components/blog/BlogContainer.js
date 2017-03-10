@@ -14,7 +14,7 @@ class BlogContainer extends React.Component {
     }
 
     render() {
-        // Need logic to have spinner, until redux has updated state
+        // ToDo: Need logic to have spinner, until redux has updated state
         const { isFetching, hasPostedSuccessfully, items } = this.props.blog
 
         items.forEach(function(element) {

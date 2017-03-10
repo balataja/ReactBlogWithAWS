@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as blogActions from '../../actions/blog-actions';
 import {browserHistory} from 'react-router';
+import {CreateNotification} from '../../common/notifications'
 
 class ManageBlogEntryPage extends React.Component {
     constructor() {
@@ -26,12 +27,19 @@ class ManageBlogEntryPage extends React.Component {
 
     saveBlogEntry(e) {
         e.preventDefault();
-        // ToDo: field validation
-        this.props.actions.postBlog(this.state.blogEntry);
-        //browserHistory.push('/Home');
+        let input = this.state.blogEntry
+        if (!input.title  || !input.body || !input.tags)
+        {
+            CreateNotification('validationError')
+        } else {
+            this.props.actions.postBlog(this.state.blogEntry);
+            // ToDo: either navigate home or clear input fields on successful post
+            //browserHistory.push('/Home');
+        }
     }
 
     render() {
+        // ToDo: show spinner/disable submit button while waiting on POST
         return (
             <div>
                 <BlogEntryForm 
