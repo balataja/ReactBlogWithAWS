@@ -1,5 +1,5 @@
-import React from 'react';
-import Input from '../../common/textInput.js';
+import React from 'react'
+import Input from '../../common/textInput.js'
 
 const BlogEntryForm = (props) => {
     // ToDo: make these look good
