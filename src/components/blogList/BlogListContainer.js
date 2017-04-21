@@ -16,7 +16,7 @@ class BlogListContainer extends React.Component{
     }
 
     componentDidMount() {
-        this.props.actions.getBlogs()
+        this.props.actions.readBlogs()
     }
 
     render() {

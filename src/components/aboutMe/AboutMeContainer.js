@@ -6,7 +6,8 @@ class AboutMe extends React.Component{
     render() {
         return (
             <div >
-                AboutMe content will go here.
+                <h3>About Me</h3>
+                <p></p>
             </div>
         )
     }

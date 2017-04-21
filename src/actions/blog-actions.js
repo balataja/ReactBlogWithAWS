@@ -5,9 +5,12 @@ import {CreateNotification} from '../common/notifications'
 
 AWS.config.update({
     region: "us-east-1",
-    accessKeyId: "AKIAJHNIALSLAVA74PEA",
-    secretAccessKey: "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",
-    endpoint: "http://localhost:8000"
+    accessKeyId: "AKIAI4ZKWJI7B6AOEFHA",
+    //accessKeyId: "AKIAJHNIALSLAVA74PEA",
+    secretAccessKey: "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",
+    //secretAccessKey: "gdIwD+OQxv3Cky71U6QryuJ9oUXeukSRGKWZSnNn",
+    endpoint: "https://dynamodb.us-east-1.amazonaws.com"
+    //endpoint: "http://localhost:8000"
 });
 
 var docClient = new AWS.DynamoDB.DocumentClient();
@@ -56,22 +59,22 @@ export const addBlogError = (err) => {
     }
 }
 
-export const postBlog = (blog) => dispatch => {
+export const createBlog = (blog) => dispatch => {
     var blogWithPostData = {
         "postedDate": GetDate(),
-                "titleId": blog.title.replace(/\s/g, ''),
-                "info": { 
-                        tags: blog.tags,
-                        body: blog.body,
-                        title: blog.title
-                } 
+        "titleId": blog.title.replace(/\s/g, ''),
+        "info": { 
+                tags: blog.tags,
+                body: blog.body,
+                title: blog.title
+        } 
     };
 
     dispatch(addBlog(blogWithPostData))
     
     var params = {
         TableName: "Blogs",
-            Item: blogWithPostData
+        Item: blogWithPostData
     };
 
     docClient.put(params, function(err, data) {
@@ -90,7 +93,7 @@ export const postBlog = (blog) => dispatch => {
     });
 }
 
-export const getBlogs = () => dispatch => {
+export const readBlogs = () => dispatch => {
     dispatch(requestBlogs())
 
     var params = {
@@ -110,3 +113,14 @@ export const getBlogs = () => dispatch => {
         }
     });
 }
+
+// export const updateBlog = (blog, updatedBlog) => dispatch => {
+//     dispatch(updateBlog())
+
+//     var params = {
+//         TableName: "Blogs",
+//         Key: {
+
+//         }
+//     }
+// }

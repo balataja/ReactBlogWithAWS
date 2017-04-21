@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SideBar from './components/sideBar/SideBarContainer'
+import NavBar from './components/navBar/NavBarContainer'
 import { PageHeader } from 'react-bootstrap';
 import { NotificationContainer } from 'react-notifications';
 
@@ -10,7 +10,7 @@ class App extends Component {
       <div className="App">
         <div className="grid__wrapper" >
             <div className="grid__sidebar" >
-                <SideBar />
+                <NavBar />
             </div>
             <div className="grid__main" >
                 <PageHeader></PageHeader>

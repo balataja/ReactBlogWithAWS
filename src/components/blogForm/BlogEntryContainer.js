@@ -32,7 +32,7 @@ class ManageBlogEntryPage extends React.Component {
         {
             CreateNotification('validationError')
         } else {
-            this.props.actions.postBlog(this.state.blogEntry);
+            this.props.actions.createBlog(this.state.blogEntry);
             // ToDo: either navigate home or clear input fields on successful post
             //browserHistory.push('/Home');
         }

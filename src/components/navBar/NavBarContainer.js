@@ -4,7 +4,7 @@ import logo from '../../logo.svg'
 import '../../App.css'
 import { Navbar, NavItem, Nav } from 'react-bootstrap'
 
-class SideBar extends React.Component{
+class NavBar extends React.Component{
     render() {
         // ToDo: implement proper css for this
         return (
@@ -30,4 +30,4 @@ class SideBar extends React.Component{
     }
 }
 
-export default SideBar
+export default NavBar

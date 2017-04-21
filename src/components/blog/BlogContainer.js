@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as blogActions from '../../actions/blog-actions';
 
+// ToDo: add edit functionality
 class BlogContainer extends React.Component {
     constructor(props) {
         super(props)
 
         if (!this.props.blog.items.length > 0) {
-            this.props.actions.getBlogs();
+            this.props.actions.readBlogs();
         }
     }
 
