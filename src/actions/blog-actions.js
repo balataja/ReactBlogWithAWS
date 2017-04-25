@@ -5,9 +5,9 @@ import {CreateNotification} from '../common/notifications'
 
 AWS.config.update({
     region: "us-east-1",
-    accessKeyId: "AKIAI4ZKWJI7B6AOEFHA",
+    accessKeyId: "AKIAJNQ7S6JMVIBJULFA",
     //accessKeyId: "AKIAJHNIALSLAVA74PEA",
-    secretAccessKey: "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",
+    secretAccessKey: "6Gq/FzQ2EflHpVQN2Mnj6tXWsGYtj509RT4boaw7",
     //secretAccessKey: "gdIwD+OQxv3Cky71U6QryuJ9oUXeukSRGKWZSnNn",
     endpoint: "https://dynamodb.us-east-1.amazonaws.com"
     //endpoint: "http://localhost:8000"
