@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import NavBar from './components/navBar/NavBarContainer'
 import { PageHeader } from 'react-bootstrap';
-import { NotificationContainer } from 'react-notifications';
+//import { NotificationContainer } from 'react-notifications';
 
 class App extends Component {
   render() {
@@ -17,7 +17,7 @@ class App extends Component {
                 {this.props.children}
             </div>
         </div>
-        <NotificationContainer />
+        {/*<NotificationContainer />*/}
       </div>
     );
   }
