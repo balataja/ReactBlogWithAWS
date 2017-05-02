@@ -19,6 +19,7 @@ class BlogTileContainer extends React.Component{
 
         // ToDo: Clicking on 'Tags' should take you to a screen with those tags
         // ToDo: make the title clickable as well to continue reading
+        // ToDo: Add pagination
 
         return (
             <div>

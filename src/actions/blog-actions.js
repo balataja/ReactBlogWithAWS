@@ -59,6 +59,48 @@ export const addBlogError = (err) => {
     }
 }
 
+export const updateBlog = (blog) => {
+    return {
+       type: types.UPDATE_BLOG,
+       blog
+    }
+}
+
+export const updateBlogSuccess = (blog) => {
+    return {
+        type: types.UPDATE_BLOG_SUCCESS,
+        blog
+    }
+}
+
+export const updateBlogError = (err) => {
+    return {
+        type: types.UPDATE_BLOG_ERROR,
+        err
+    }
+}
+
+export const deleteBlog = (blog) => {
+    return {
+       type: types.DELETE_BLOG,
+       blog
+    }
+}
+
+export const deleteBlogSuccess = (blog) => {
+    return {
+        type: types.DELETE_BLOG_SUCCESS,
+        blog
+    }
+}
+
+export const deleteBlogError = (err) => {
+    return {
+        type: types.DELETE_BLOG_ERROR,
+        err
+    }
+}
+
 export const createBlog = (blog) => dispatch => {
     var blogWithPostData = {
         "postedDate": GetDate(),
