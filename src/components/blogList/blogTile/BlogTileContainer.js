@@ -14,13 +14,19 @@ class BlogTileContainer extends React.Component{
     }
 
     render() {
+        let body = this.props.blog.info.body;
+        let bodyAbbreviated = body.length > 499 ? body.substring(0,499) + "..." : body
+
+        // ToDo: Clicking on 'Tags' should take you to a screen with those tags
+        // ToDo: make the title clickable as well to continue reading
+
         return (
             <div>
                 <BlogTileComponent 
                     key={this.props.blog.titleId}
                     title={this.props.blog.info.title}
                     tags={this.props.blog.info.tags}
-                    body={this.props.blog.info.body} 
+                    body={bodyAbbreviated} 
                     postedDate={this.props.blog.postedDate}
                     onTileClick={this.onTileClick} />
             </div>
